@@ -2,12 +2,8 @@ package uz.pdp.citynotificationservice.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.pdp.citynotificationservice.dto.MailDto;
-import uz.pdp.citynotificationservice.dto.Verification;
 import uz.pdp.citynotificationservice.service.MailSendingService;
 
 @RestController
@@ -16,8 +12,8 @@ import uz.pdp.citynotificationservice.service.MailSendingService;
 public class MailSendingController {
     private final MailSendingService mailSendingService;
 
-    @GetMapping("/send-single")
-    public ResponseEntity<Verification> sendSingle(@RequestBody MailDto mailDto) {
+    @PostMapping("/send-single")
+    public ResponseEntity<String> sendSingle(@RequestBody MailDto mailDto) {
         return ResponseEntity.ok(mailSendingService.sendMessage(mailDto));
     }
 }

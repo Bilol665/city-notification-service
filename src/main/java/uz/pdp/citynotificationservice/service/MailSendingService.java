@@ -6,7 +6,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import uz.pdp.citynotificationservice.dto.MailDto;
-import uz.pdp.citynotificationservice.dto.Verification;
 
 import java.util.Random;
 
@@ -18,18 +17,13 @@ public class MailSendingService {
     @Value("${spring.mail.username}")
     private String sender;
 
-    public Verification sendMessage(MailDto mailDto) {
+    public String sendMessage(MailDto mailDto) {
         Long l = (long) random.nextInt(10000);
-        Verification verification = Verification.builder()
-                .code(String.valueOf(l))
-                .link(mailDto.getLink())
-                .userEmail(mailDto.getEmail())
-                .build();
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setTo(mailDto.getEmail());
         simpleMailMessage.setFrom(sender);
         simpleMailMessage.setText(mailDto.getMessage());
         javaMailSender.send(simpleMailMessage);
-        return verification;
+        return "OK";
     }
 }
