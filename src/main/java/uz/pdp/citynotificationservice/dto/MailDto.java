@@ -10,5 +10,4 @@ import lombok.*;
 public class MailDto {
     private String message;
     private String email;
-    private String link;
 }
