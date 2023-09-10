@@ -17,19 +17,7 @@ spring:
         smtp:
           starttls:
             enable: true
-  kafka:
-    consumer:
-      bootstrap-servers: localhost:9092
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      group-id: notification-service
-      properties:
-        spring:
-          json:
-            trusted:
-              packages: "*"
-    topic:
-      name: notification
+
 eureka:
   client:
     service-url:
